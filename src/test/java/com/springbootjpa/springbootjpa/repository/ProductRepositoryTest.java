@@ -35,10 +35,10 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void updateUsingSaveMethod(){
+    void updateUsingSaveMethod() {
 
         //find or rertieve an entity by id
-        Long id =1L;
+        Long id = 10L;
         Product product = productRepository.findById(id).get();
 
         //update entity information
@@ -52,13 +52,13 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void findByIdMethod(){
+    void findByIdMethod() {
         Long id = 1L;
         Product product = productRepository.findById(id).get();
     }
 
     @Test
-    void saveAllMethod(){
+    void saveAllMethod() {
 
         //CREATED PRODUCT
         Product product2 = new Product();
@@ -87,32 +87,33 @@ public class ProductRepositoryTest {
         product4.setActive(true);
         product4.setImageUrl("product4.png");
 
-        productRepository.saveAll(List.of(product2,product3,product4));
+        productRepository.saveAll(List.of(product2, product3, product4));
 
     }
+
     @Test
-    void findAllMethod(){
+    void findAllMethod() {
         List<Product> products = productRepository.findAll();
         products.forEach((product -> System.out.println(product.getName())));
     }
 
     @Test
-    void deleteByIdMethod(){
+    void deleteByIdMethod() {
         Long id = 1L;
         productRepository.deleteById(id);
     }
 
     @Test
-    void deleteMethod(){
+    void deleteMethod() {
         //find an entity by id
-        Long id =5L;
-        Product product= productRepository.findById(id).get();
+        Long id = 5L;
+        Product product = productRepository.findById(id).get();
         //delete(entity)
         productRepository.delete(product);
     }
 
     @Test
-    void deleteAllMethods(){
+    void deleteAllMethods() {
 
         Product product = productRepository.findById(8L).get();
 
@@ -122,15 +123,16 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void existsByIdMethod(){
+    void existsByIdMethod() {
         Long id = 7L;
 
         boolean result = productRepository.existsById(id);
 
         System.out.println(result);
     }
+
     @Test
-    void countMethod(){
+    void countMethod() {
         long count = productRepository.count();
         System.out.println(count);
     }
