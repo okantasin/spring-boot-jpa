@@ -1,9 +1,6 @@
 package com.springbootjpa.springbootjpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,6 +9,32 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+
+@NamedQueries({
+        @NamedQuery(
+                name = "Product.findAllOrderByNameDesc",
+                query = "select p from Product p ORDER BY  p.name DESC"
+        ),
+        @NamedQuery(
+                name = "Product.findByPrice",
+                query = "select p from Product p where  p.price =:price"
+        )
+})
+@NamedNativeQueries(
+        {
+                @NamedNativeQuery(
+                        name = "Product.findByDescription",
+                        query = "select * from products p where p.description = :description",
+                        resultClass = Product.class
+                ),
+                @NamedNativeQuery(
+                        name = "Product.findAllOrderByNameASC",
+                        query = "select * from products order by name asc",
+                        resultClass = Product.class
+                )
+        }
+)
+
 @Table(
         name = "products",
         schema = "ecommerce",
@@ -22,7 +45,8 @@ import java.time.LocalDateTime;
                 )
         }
 )
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
